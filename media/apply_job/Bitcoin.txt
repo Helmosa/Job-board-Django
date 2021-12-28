@@ -1,0 +1,18 @@
+client_id=CLIENT_ID
+&response_type=code
+&state=STATE
+&redirect_uri=https://attacker.com
+&scope=email
+
+
+32WUzo7ptb3kQmigrJkyUXrXj35S7utxkj Elgllad
+
+
+
+
+aerocrypto.net
+user:dereman
+pass:Victor@91425
+IP:81.250.131.195
+manmanmankiss@gmail.com
+

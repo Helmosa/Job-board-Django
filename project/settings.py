@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
+    'phonenumber_field',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,11 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # my apps
+    'bootstrap4',
+    'django_filters',
     'job',
-    'accounts',
-    'blog',
     'contact',
     'home',
+    'rest_framework',
+    'ckeditor',
+    
 ]
 
 MIDDLEWARE = [
@@ -60,7 +65,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,7 +130,29 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    '/var/www/static/',
+]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / "media"
+
+#CKeditor
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
+    
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+## Sending Email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
+EMAIL_HOST = 'smtp.gmail.com' #google
+EMAIL_HOST_USER = 'elglladcybersec@gmail.com' #your gmail
+EMAIL_HOST_PASSWORD = 'joqvtrowmzfomjrc' 
+EMAIL_USE_TLS = True
+EMAIL_PORT = '587' #Port for TLS/STARTTLS: 587
+
+
+

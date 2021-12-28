@@ -9,7 +9,7 @@
     `pip install <package-name>`
 
 Packages:
-  *asgiref==3.4.1
+  >*asgiref==3.4.1
   beautifulsoup4==4.10.0
   Django==3.2.9
   django-appconf==1.0.5
@@ -29,3 +29,9 @@ Packages:
   soupsieve==2.3.1
   sqlparse==0.4.2
   zipp==3.6.0*
+  
+  ```
+  hdsa
+  dsahsda
+  hdsa
+  ```

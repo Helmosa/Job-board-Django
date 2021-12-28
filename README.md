@@ -10,7 +10,6 @@
 
 Packages:
   asgiref==3.4.1
-
   beautifulsoup4==4.10.0
 
   Django==3.2.9

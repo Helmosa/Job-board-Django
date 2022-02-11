@@ -154,5 +154,14 @@ EMAIL_HOST_PASSWORD = 'joqvtrowmzfomjrc'
 EMAIL_USE_TLS = True
 EMAIL_PORT = '587' #Port for TLS/STARTTLS: 587
 
+## Messages
+from django.contrib.messages import constants as messages
 
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 

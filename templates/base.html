@@ -53,15 +53,14 @@
                                 <div class="main-menu  d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="{% url 'jobs:index' %}">home</a></li>
+                                            {%if request.user.is_authenticated%}
+                                             
+                                            <li><a href="{% url 'accounts:dashboard' %}">Dashboard</a></li>
+                                            
+                                        {%endif%}
+                                        <li><a href="{% url 'jobs:index' %}">home</a></li>
                                             <li><a href="{% url 'jobs:job_list' %}">Browse Job</a></li>
-                                            <li><a href="#">pages <i class="ti-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a href="candidate.html">Candidates </a></li>
-                                                    <li><a href="job_details.html">job details </a></li>
-                                                    <li><a href="elements.html">elements</a></li>
-                                                </ul>
-                                            </li>
+                                            
                                             <li><a href="{% url 'contact:contact' %}">Contact</a></li>
                                         </ul>
                                     </nav>
@@ -203,7 +202,7 @@
                     <div class="col-xl-12">
                         <p class="copy_right text-center">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://google.com" target="_blank">Will add</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://google.com" target="_blank">Elgllad & Helmy</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
                     </div>

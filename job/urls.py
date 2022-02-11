@@ -2,6 +2,7 @@ from django.urls import include,path
 from . import views
 from . import api
 
+
 app_name = 'job'
 
 urlpatterns = [

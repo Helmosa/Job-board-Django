@@ -1,5 +1,11 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <p>Your Request For This Job Done.</p>
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-success" role="alert">
+      {{ message }}
+    </div>
+{% endfor %}
+{% endif %}
 {% endblock %}

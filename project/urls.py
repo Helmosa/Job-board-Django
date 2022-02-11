@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),  # User Authentication => https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Authentication
     path('accounts/',include('accounts.urls',namespace='accounts')),
     path('admin/', admin.site.urls),
     path('',include('job.urls',namespace='jobs')),

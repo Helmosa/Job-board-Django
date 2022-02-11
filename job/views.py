@@ -7,6 +7,7 @@ from .form import ApplyForm,add_job_form
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .filters import JobFilter
+from django.contrib import messages
 # Create your views here.
 
 
@@ -23,14 +24,12 @@ def index(request):
 def job_list(request):
     job_list = Job.objects.all()
     
-   
-       
     ##Filter
     myfilter = JobFilter(request.GET,queryset=job_list)
     job_list = myfilter.qs
     
     # Adding paginator  
-    paginator = Paginator(job_list, 3) # Show 1 contacts per page.
+    paginator = Paginator(job_list, 3) # Show 3 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
@@ -41,7 +40,7 @@ def job_list(request):
 
     return render(request,'job/job_list.html',context)
 
-
+@login_required
 ## Jobs Details
 def job_details(request, slug):
     job_details = Job.objects.get(slug=slug)
@@ -50,8 +49,10 @@ def job_details(request, slug):
         form = ApplyForm(request.POST, request.FILES) # request Files ==> CV 
         if form.is_valid():
             myform = form.save(commit=False) #Don't Save in DB
-            myform.job = job_details
+            myform.job = job_details #job ==> دا ال field بتاع الوظيفه 
+            myform.created_by = request.user # دا عشان نجيب اليوزر الي ملي الابليكشن عشان يستغل
             myform.save() #Save in DB
+            messages.success(request, 'Your CV Has Been Sended we will review your CV And Back To You If It Approaved! Pleas Go To Dashboard Page')
             return redirect(reverse('jobs:done_job'))
             
     else:

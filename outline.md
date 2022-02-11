@@ -37,3 +37,7 @@ Blog:
 Contact Form:
 Home :
 About :
+accounts:
+    -login
+    - Register_co (employer)
+    - Register (job seeker)

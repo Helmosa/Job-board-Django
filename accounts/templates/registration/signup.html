@@ -2,9 +2,38 @@
 {% load bootstrap4 %}
 {% block content %}
 
+<div class="phone_num d-none d-xl-block">
+  <!--<a style="color:#00D363;font-size:20px" href="{% url 'accounts:register_CO' %}">  Searching For Employees?! <hr></a>-->
+  <button type="button" class="btn btn-primary">
+    <a style="color:white;" href="{% url 'accounts:register_CO' %}">Searching For Employees?!</a>
+   </button><hr>
+  
+</div>
   <form method="post">
+    <p style="text-align: center;font-size: 30px;color:#136e9e ">
+      FIND THE RIGHT JOB OR INTERNSHIP FOR YOU
+    </p>
     {% csrf_token %}
-    {% bootstrap_form form %}
+    {% bootstrap_form form %}<hr>
+    <!--<div class="field">
+      <label>Account Type</label>
+      <div class="control">
+        <div class="select">
+          <select name="account_type">
+            <option value="jobseeker">Job Seeker</option>
+            <option vlaue="employer">Employer</option>
+          </select>
+        </div>
+      </div>
+    </div>
+     <br><br><br>-->
+     {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+              {{ message }}
+            </div>
+        {% endfor %}
+      {% endif %}
     <input type="submit" value="Signup" class="boxed-btn3 w-100" />
     </form>
 

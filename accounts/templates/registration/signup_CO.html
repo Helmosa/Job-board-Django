@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+{% load bootstrap4 %}
+{% block content %}
+
+  <form method="post">
+    {% csrf_token %}
+    <p style="text-align: center;font-size: 28px;color:#136e9e;text-transform:uppercase "> Find the best employees for your company </p>
+    
+    {% bootstrap_form namecomapny %}
+    {% bootstrap_form form2 %}
+    <input type="submit" value="Signup" class="boxed-btn3 w-100" />
+    </form>
+
+{% endblock %}

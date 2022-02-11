@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block body %}
+  
+
+<!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>{{request.user}} Dashboard</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+    <div class="job_details_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+
+                    <div class="apply_job_form white-bg">
+                        <h2>User Dashboard </h2><hr>
+                            <div class="job_content " style="display:flex;justify-content:space-between">
+                                <div >
+                                    <ul> 
+                                        
+                                        <!--{{jobs}}-->
+                                        <!--{{userprofile.User_Type}}--> 
+                                    {% if userprofile.User_Type == 'Job Seeker' %}
+                                        <li>User Nature: <span> Job Seeker </span></li><br>
+                                        <div class="subtitle">
+                                            <h5>Your Applications:<hr></h5>
+                                        </div>
+                                        {%for application in request.user.applications.all%}
+                                                <div class="application">
+                                                    <a href="{% url 'accounts:view_application' application.id %}">{{application.job.title}}<hr>
+                                                </div>
+                                            {%empty%}
+                                                <p>You Don't Applied Any Applications Yet...</p>
+                                        {%endfor%}
+
+
+                                    {%else%}
+                                        <li>User Nature: <span>Employer</span></li><br>
+                                        <div class="subtitle">
+                                            <h5>Your Jobs:<hr></h5>
+                                        </div>
+                                             {%for job in request.user.job_owner.all%}
+                                                <div class="job">
+                                                      <a href="{% url 'accounts:view_dashboard_job' job.id %}">{{job.title}}
+                                                </div>
+                                            {%empty%}
+                                                <p>You Don't Have Any Jobs Yet...</p>
+                                        {%endfor%}
+                                    {%endif%}<br>
+                                    
+                                </ul>
+
+                                </div>  
+                                                          
+                            </div>
+                    </div>
+                </div>
+                    <div class="job_location_wrap">
+                        <div class="job_lok_inner">
+                            <div id="map" style="height: 200px;"></div>
+                            <script>
+                              function initMap() {
+                                var uluru = {lat: -25.363, lng: 131.044};
+                                var grayStyles = [
+                                  {
+                                    featureType: "all",
+                                    stylers: [
+                                      { saturation: -90 },
+                                      { lightness: 50 }
+                                    ]
+                                  },
+                                  {elementType: 'labels.text.fill', stylers: [{color: '#ccdee9'}]}
+                                ];
+                                var map = new google.maps.Map(document.getElementById('map'), {
+                                  center: {lat: -31.197, lng: 150.744},
+                                  zoom: 9,
+                                  styles: grayStyles,
+                                  scrollwheel:  false
+                                });
+                              }
+                              
+                            </script>
+                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap"></script>
+                            
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

@@ -26,13 +26,29 @@
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="thumb">
-                                    <img src="" alt="">
+                                    {% if job.img %}
+                                    <img style="
+                                    width: 82px;
+                                    height: 82px;
+                                    position: absolute;
+                                    top: 30px;
+                                    left: 45px;
+                                    border-radius:5px;" src="{{job.img.url}}" alt="">
+                                    {% else %}
+                                    <img style="
+                                    width: 82px;
+                                    height: 82px;
+                                    position: absolute;
+                                    top: 30px;
+                                    left: 45px;
+                                    border-radius:5px;" src="{% static 'hirejob/index.jpg' %}" alt="">
+                                    {% endif %}
                                 </div>
                                 <div class="jobs_conetent">
                                     <a href="{% static 'img\job\company-logo-shopify.jpg'%}"><h4>{{job}}</h4></a>
                                     <div class="links_locat d-flex align-items-center">
                                         <div class="location">
-                                            <p> <i class="fa fa-map-marker"></i> California, USA</p>
+                                            <p> <i class="fa fa-map-marker"></i> {{job.location}}</p>
                                         </div>
                                         <div class="location">
                                             <p> <i class="fa fa-clock-o"></i> {{job.job_type}}</p>
@@ -79,7 +95,7 @@
                                 <li>Published on: <span>{{job.published_at|date:'d M Y'}}</span></li>
                                 <li>Vacancy: <span>{{job.vacancy}} Position</span></li>
                                 <li>Salary: <span>{{job.salary}}k/y</span></li>
-                                <li>Location: <span>California, USA</span></li>
+                                <li>Location: <span>{{job.location}}</span></li>
                                 <li>Job Nature: <span> {{job.job_type}}</span></li>
                             </ul>
                         </div>

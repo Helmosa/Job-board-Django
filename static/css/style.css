@@ -3300,7 +3300,7 @@ h3 {
   background: #F5F7FA;
   margin-right: 25px;
   border: 1px solid #F0F0F0;
-  position: relative;
+  /* position: relative;*/
 }
 
 /* line 46, ../../Arafath/CL/December/235. Job board/HTML/scss/_job_list.scss */

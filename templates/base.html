@@ -54,7 +54,8 @@
                                     <nav>
                                         <ul id="navigation">
                                             {%if request.user.is_authenticated%}
-                                             
+                                            <li><a href="{% url 'nnotification:notification' %}" class="navbar-item">Notifications ({{notifications.count}})</a></li>
+
                                             <li><a href="{% url 'accounts:dashboard' %}">Dashboard</a></li>
                                             
                                         {%endif%}

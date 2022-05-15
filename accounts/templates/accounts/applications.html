@@ -28,14 +28,47 @@
                             <div class="job_content " style="display:flex;justify-content:space-between">
                                 <div >
                                     <ul>
+                                        <!--{{test}}-->
                                         <li>Application Name: <span style="font-weight:bold"> {{application.job.title}} </span></li><br>
                                         <li>Name: <span style="font-weight:bold"> {{application.name}} </span></li><br>
                                         <li>Date Added: <span style="font-weight:bold"> {{application.created_at|date:'d-m-Y (fA)'}} </span></li><br>
                                         <li>Email: <span style="font-weight:bold"> {{application.email}} </span></li><br>
                                     </ul>
-                                </div>  
-                                                          
-                            </div>
+                                </div><hr>
+                                
+                                </div>
+                                <div>  <br>
+                                    <h1>Conversation</h1>   <hr> 
+                                    {% for message in messages %}
+                                    {% if message.application == application%}
+                                        {% if message.sender == application.created_by or message.reciever == application.created_by %}
+                                    
+                                    {% comment %} {% for message in application.message.conversationmessages.all%} {% endcomment %}
+                                        <div class="notification">
+                                            {%if message.sender != current_user%}
+                                            <b>{{message.sender.username}} - {{message.created_at|timesince}} ago</b>
+                                            {%else%}
+                                            <b style='color:blue;'>{{message.sender.username}} - {{message.created_at|timesince}} ago</b>
+                                            {%endif%}
+                                            {{message.content}}
+                                        </div>
+                                        {% comment %} {%empty%}
+                                            <p>No Messages yet...</p>
+                                            <hr> {% endcomment %}
+                                    {%endif%}        
+                                    {%endif%}
+                                    {%endfor%}
+                                        
+                                    <form method="post" action="#">
+                                        {% csrf_token %}
+                                        <div class="field">
+                                            <div class="control">
+                                                <textarea class="textarea" placeholder="Enter Your Message" name="content" id="id_content"></textarea>
+                                            </div>
+                                        </div>
+                                            <button class="button is-success">Send</button>
+                                    </form>                  
+                                  </div>
                     </div>
                 </div>
                     <div class="job_location_wrap">

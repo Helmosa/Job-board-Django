@@ -4,6 +4,7 @@ from django.db.models.fields import EmailField, TextField
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
+
 # Create your models here.
 
 JOB_TYPE = (

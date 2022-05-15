@@ -24,8 +24,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('job.urls',namespace='jobs')),
     path('contact-us/',include('contact.urls',namespace='contact')),
+    path('notification/',include('nnotification.urls',namespace='notification')),
     path('api-auth/', include('rest_framework.urls')),
     path('ckeditor/',include('ckeditor_uploader.urls')),
 ] 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+

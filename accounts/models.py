@@ -1,8 +1,10 @@
+from email.mime import application
 from django.db import models
 from django.contrib.auth.models import User
 #from phonenumber_field.modelfields import PhoneNumberField
 from django.db.models.deletion import CASCADE
 from django.db.models.signals import post_save
+from job.models import Job,ApllayJob
 # Create your models here.
 
 user_type = (
@@ -37,4 +39,12 @@ post_save.connect(create_profile,sender=User)
 class NameComapny(models.Model):
     Company_Name = models.CharField(max_length = 60)
     
-        
+class ConversationMessage(models.Model):
+    application = models.ForeignKey(ApllayJob, related_name='conversationmessages', on_delete=models.CASCADE)
+    content = models.TextField()
+    sender = models.ForeignKey(User,related_name='sender',on_delete=models.CASCADE)
+    reciever = models.ForeignKey(User,related_name='reciever',on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['created_at']

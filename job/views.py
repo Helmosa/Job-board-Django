@@ -1,3 +1,5 @@
+from email.mime import application
+import imp
 from django.db.models.query import QuerySet
 from django.http import request
 from django.shortcuts import render,redirect
@@ -8,6 +10,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .filters import JobFilter
 from django.contrib import messages
+from nnotification.utilities import create_notification
 # Create your views here.
 
 
@@ -44,7 +47,7 @@ def job_list(request):
 ## Jobs Details
 def job_details(request, slug):
     job_details = Job.objects.get(slug=slug)
-    # Aplly Form
+    # Aplly For Job
     if request.method=='POST':
         form = ApplyForm(request.POST, request.FILES) # request Files ==> CV 
         if form.is_valid():
@@ -52,6 +55,8 @@ def job_details(request, slug):
             myform.job = job_details #job ==> دا ال field بتاع الوظيفه 
             myform.created_by = request.user # دا عشان نجيب اليوزر الي ملي الابليكشن عشان يستغل
             myform.save() #Save in DB
+            create_notification(request, job_details.owner, 'myform', extra_id=myform.id)
+            
             messages.success(request, 'Your CV Has Been Sended we will review your CV And Back To You If It Approaved! Pleas Go To Dashboard Page')
             return redirect(reverse('jobs:done_job'))
             

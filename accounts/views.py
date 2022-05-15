@@ -7,7 +7,7 @@ from django.contrib.auth.models import User, auth
 
 from job.form import ApplyForm
 from .forms import SignupForm,SignupForm2,ProfileForm,UserForm,ComanyForm,AddJobDashboard
-from .models import Profile
+from .models import ConversationMessage, Profile,ConversationMessage
 from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -86,11 +86,29 @@ def dashboard(request): #Have Different Information based on The Type Of User
 
 @login_required
 def view_application(request,application_id):
-    if request.user.userprofile.User_Type == 'Job Seeker':
-        application = get_object_or_404(ApllayJob,pk=application_id,created_by = request.user)
+    if request.user.userprofile.User_Type == 'Employer':
+        
+        application = get_object_or_404(ApllayJob,pk=application_id)
+
+        
     else:
         application = get_object_or_404(ApllayJob,pk=application_id,created_by = request.user)
-    return render(request,'accounts/applications.html',{'application':application})
+       
+        
+    current_user = request.user    
+    messages = ConversationMessage.objects.all().order_by("created_at")       
+    if request.method =='POST':
+        content = request.POST.get('content')
+        
+        if content:
+            reciever = application.created_by
+            conversationmessage = ConversationMessage.objects.create(application=application,content=content,sender=request.user,reciever=reciever)
+            
+            # return redirect('view_application',application_id=application_id)
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    
+    #test = request.user.userprofile.User_Type ==> job seeker
+    return render(request,'accounts/applications.html',{'application':application,'messages':messages,'current_user':current_user})
     
 @login_required
 def view_dashboard_job(request,job_id):

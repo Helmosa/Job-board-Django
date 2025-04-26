@@ -1,4 +1,4 @@
-# Employment-Oriented Website
+# Employment-Oriented Website.
 
 A django-based Employment-Oriented Website
 
@@ -14,7 +14,7 @@ A django-based Employment-Oriented Website
 ## Technologies Used
 
 - Backend: Django (Python).
-- Frontend: HTML, CSS, Bootstrap.
+- Frontend: JavaScript, HTML, CSS, Bootstrap.
 - Database: SQLite.
 
 ## Setup Instructions
